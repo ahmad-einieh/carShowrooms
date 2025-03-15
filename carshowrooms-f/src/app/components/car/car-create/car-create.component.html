@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>Add New Car</h3>
+      <a [routerLink]="['/cars']" class="btn btn-secondary">Back to Cars</a>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="showroomId" class="form-label required">Showroom</label>
+          <select id="showroomId" formControlName="showroomId" class="form-select">
+            <option value="">Select Showroom</option>
+            <option *ngFor="let showroom of showrooms" [value]="showroom.id">{{ showroom.name }}</option>
+          </select>
+          <div *ngIf="f['showroomId'].touched && f['showroomId'].errors" class="text-danger">
+            <div *ngIf="f['showroomId'].errors['required']">Showroom is required</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="vin" class="form-label required">VIN</label>
+          <input type="text" id="vin" formControlName="vin" class="form-control" maxlength="25">
+          <div *ngIf="f['vin'].touched && f['vin'].errors" class="text-danger">
+            <div *ngIf="f['vin'].errors['required']">VIN is required</div>
+            <div *ngIf="f['vin'].errors['maxlength']">VIN cannot exceed 25 characters</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="maker" class="form-label required">Maker</label>
+          <input type="text" id="maker" formControlName="maker" class="form-control" maxlength="25">
+          <div *ngIf="f['maker'].touched && f['maker'].errors" class="text-danger">
+            <div *ngIf="f['maker'].errors['required']">Maker is required</div>
+            <div *ngIf="f['maker'].errors['maxlength']">Maker cannot exceed 25 characters</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="model" class="form-label required">Model</label>
+          <input type="text" id="model" formControlName="model" class="form-control" maxlength="25">
+          <div *ngIf="f['model'].touched && f['model'].errors" class="text-danger">
+            <div *ngIf="f['model'].errors['required']">Model is required</div>
+            <div *ngIf="f['model'].errors['maxlength']">Model cannot exceed 25 characters</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="modelYear" class="form-label required">Model Year</label>
+          <input type="number" id="modelYear" formControlName="modelYear" class="form-control" max="9999">
+          <div *ngIf="f['modelYear'].touched && f['modelYear'].errors" class="text-danger">
+            <div *ngIf="f['modelYear'].errors['required']">Model year is required</div>
+            <div *ngIf="f['modelYear'].errors['max']">Model year cannot exceed 4 digits</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="price" class="form-label required">Price</label>
+          <input type="number" id="price" formControlName="price" class="form-control" step="0.01">
+          <div *ngIf="f['price'].touched && f['price'].errors" class="text-danger">
+            <div *ngIf="f['price'].errors['required']">Price is required</div>
+          </div>
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="submit" class="btn btn-primary" [disabled]="carForm.invalid || submitted">Add Car</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

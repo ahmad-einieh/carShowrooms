@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>Create New Showroom</h3>
+      <a [routerLink]="['/showrooms']" class="btn btn-secondary">Back to Showrooms</a>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="showroomForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label required">Showroom Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control" maxlength="100">
+          <div *ngIf="f['name'].touched && f['name'].errors" class="text-danger">
+            <div *ngIf="f['name'].errors['required']">Name is required</div>
+            <div *ngIf="f['name'].errors['maxlength']">Name cannot exceed 100 characters</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="commercialRegistrationNumber" class="form-label required">Commercial Registration Number</label>
+          <input type="text" id="commercialRegistrationNumber" formControlName="commercialRegistrationNumber" class="form-control" maxlength="10">
+          <div *ngIf="f['commercialRegistrationNumber'].touched && f['commercialRegistrationNumber'].errors" class="text-danger">
+            <div *ngIf="f['commercialRegistrationNumber'].errors['required']">Commercial Registration Number is required</div>
+            <div *ngIf="f['commercialRegistrationNumber'].errors['pattern']">Commercial Registration Number must be exactly 10 digits</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="managerName" class="form-label">Manager Name</label>
+          <input type="text" id="managerName" formControlName="managerName" class="form-control" maxlength="100">
+          <div *ngIf="f['managerName'].touched && f['managerName'].errors" class="text-danger">
+            <div *ngIf="f['managerName'].errors['maxlength']">Manager name cannot exceed 100 characters</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="contactNumber" class="form-label required">Contact Number</label>
+          <input type="text" id="contactNumber" formControlName="contactNumber" class="form-control" maxlength="15">
+          <div *ngIf="f['contactNumber'].touched && f['contactNumber'].errors" class="text-danger">
+            <div *ngIf="f['contactNumber'].errors['required']">Contact number is required</div>
+            <div *ngIf="f['contactNumber'].errors['pattern']">Contact number must be numeric and not exceed 15 digits</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea id="address" formControlName="address" class="form-control" rows="3" maxlength="255"></textarea>
+          <div *ngIf="f['address'].touched && f['address'].errors" class="text-danger">
+            <div *ngIf="f['address'].errors['maxlength']">Address cannot exceed 255 characters</div>
+          </div>
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="submit" class="btn btn-primary" [disabled]="showroomForm.invalid || submitted">Create Showroom</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

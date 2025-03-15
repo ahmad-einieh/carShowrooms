@@ -1,0 +1,40 @@
+<div class="container mt-4" *ngIf="showroom">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>Edit Showroom: {{ showroom.name }}</h3>
+      <a [routerLink]="['/showrooms', showroomId]" class="btn btn-secondary">Back to Showroom</a>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="showroomForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="managerName" class="form-label">Manager Name</label>
+          <input type="text" id="managerName" formControlName="managerName" class="form-control" maxlength="100">
+          <div *ngIf="f['managerName'].touched && f['managerName'].errors" class="text-danger">
+            <div *ngIf="f['managerName'].errors['maxlength']">Manager name cannot exceed 100 characters</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="contactNumber" class="form-label required">Contact Number</label>
+          <input type="text" id="contactNumber" formControlName="contactNumber" class="form-control" maxlength="15">
+          <div *ngIf="f['contactNumber'].touched && f['contactNumber'].errors" class="text-danger">
+            <div *ngIf="f['contactNumber'].errors['required']">Contact number is required</div>
+            <div *ngIf="f['contactNumber'].errors['pattern']">Contact number must be numeric and not exceed 15 digits</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea id="address" formControlName="address" class="form-control" rows="3" maxlength="255"></textarea>
+          <div *ngIf="f['address'].touched && f['address'].errors" class="text-danger">
+            <div *ngIf="f['address'].errors['maxlength']">Address cannot exceed 255 characters</div>
+          </div>
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="submit" class="btn btn-primary" [disabled]="showroomForm.invalid || submitted">Update Showroom</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
