@@ -18,4 +18,8 @@ public interface ShowroomRepository extends JpaRepository<Showroom, Long> {
     boolean existsByCommercialRegistrationNumber(String commercialRegistrationNumber);
     
     Optional<Showroom> findByCommercialRegistrationNumberAndDeletedFalse(String commercialRegistrationNumber);
+    
+    Page<Showroom> findByUserUsernameAndDeletedFalse(String username, Pageable pageable);
+    
+    Optional<Showroom> findByIdAndUserUsernameAndDeletedFalse(Long id, String username);
 }

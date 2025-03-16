@@ -50,6 +50,10 @@ public class Showroom {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     
     public void addCar(Car car) {
         cars.add(car);

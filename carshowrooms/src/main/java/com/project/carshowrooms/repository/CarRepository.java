@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long>, JpaSpecificationExecutor<Car> {
     
@@ -15,4 +17,8 @@ public interface CarRepository extends JpaRepository<Car, Long>, JpaSpecificatio
     
     @Query("SELECT c FROM Car c JOIN c.showroom s WHERE s.deleted = false")
     Page<Car> findAllWithActiveShowrooms(Pageable pageable);
+    
+    Optional<Car> findByIdAndUserUsername(Long id, String username);
+    
+    Page<Car> findByShowroomIdAndUserUsername(Long showroomId, String username, Pageable pageable);
 }
