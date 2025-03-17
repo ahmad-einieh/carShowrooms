@@ -1,6 +1,6 @@
-# CarshowroomsF
+## Configuration
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+1- edit the `environment.ts` file in the `src/environments` directory to change url of backend.
 
 ## Development server
 
@@ -12,20 +12,6 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
 ## Building
 
 To build the project run:
@@ -36,24 +22,52 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Building docker image
 
 ```bash
-ng e2e
+docker build -t angular-app .
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Running docker image
 
-## Additional Resources
+```bash
+docker run -p 80:80 angular-app
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+### Project Structure
+
+1. **Source Code (`src/app`)**:
+   - **`app.component.*`**: Root component for the application.
+   - **`app.config.ts`**: Application configuration.
+   - **`app.routes.ts`**: Routing configuration for the application.
+   - **`components`**: Reusable UI components:
+     - **`car`**: Components related to car management:
+       - `car-create`: Form for creating a new car.
+       - `car-list`: List of cars with filtering and pagination.
+     - **`login`**: Login component for authentication.
+     - **`register`**: Registration component for new users.
+     - **`shared`**: Shared components like headers, footers, and error messages:
+       - `error`: Error handling component.
+       - `footer`: Footer component.
+       - `header`: Header component.
+     - **`showroom`**: Components related to showroom management:
+       - `showroom-create`: Form for creating a new showroom.
+       - `showroom-details`: Details view for a specific showroom.
+       - `showroom-edit`: Form for editing showroom details.
+       - `showroom-list`: List of showrooms with pagination and sorting.
+   - **`helpers`**: Utility classes and guards:
+     - `auth.guard.ts`: Route guard for authentication.
+     - `auth.interceptor.ts`: HTTP interceptor for adding authentication tokens.
+   - **`models`**: TypeScript interfaces/models for data structures:
+     - `auth.model.ts`, `car.model.ts`, `showroom.model.ts`, `user.model.ts`.
+   - **`services`**: Angular services for interacting with the backend API:
+     - `auth.service.ts`: Authentication-related API calls.
+     - `car.service.ts`: Car-related API calls.
+     - `showroom.service.ts`: Showroom-related API calls.
+
+2. **Environment Configuration (`src/environments`)**:
+   - `environment.ts`: Environment-specific configuration.
+
