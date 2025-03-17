@@ -33,12 +33,7 @@
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -103,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "331a9c74-af09-4ba6-8d33-ac11d430653a"
+    "analytics": "3d46f684-652f-4784-be88-e34d6de10ff4"
   }
 }

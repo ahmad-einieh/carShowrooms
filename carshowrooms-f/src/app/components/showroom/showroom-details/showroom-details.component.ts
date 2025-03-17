@@ -20,7 +20,8 @@ export class ShowroomDetailsComponent implements OnInit {
   showroom?: Showroom;
   cars: Car[] = [];
   carForm!: FormGroup;
-  
+  isCreateCarLoading: boolean = false;
+
   // Pagination for cars
   currentCarPage = 0;
   carPageSize = 10;
@@ -109,7 +110,7 @@ export class ShowroomDetailsComponent implements OnInit {
   }
 
   addCar(): void {
-    if (this.carForm.invalid) {
+    if (this.carForm.invalid || this.isCreateCarLoading) {
       return;
     }
 
@@ -117,12 +118,13 @@ export class ShowroomDetailsComponent implements OnInit {
       ...this.carForm.value,
       showroomId: this.showroomId
     };
-
+    this.isCreateCarLoading = true;
     this.carService.createCar(this.showroomId, car)
       .subscribe({
         next: (response) => {
           this.addCarModal.hide();
           this.loadCars();
+          this.isCreateCarLoading = false;
         },
         error: (error) => {
           console.error('Error adding car', error);
