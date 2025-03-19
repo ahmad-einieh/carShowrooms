@@ -57,7 +57,6 @@ export class AuthService {
   }
 
   logout(): void {
-    // Only remove from localStorage in the browser
     if (this.isBrowser) {
       localStorage.removeItem('currentUser');
     }
@@ -67,6 +66,11 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.currentUserValue;
+  }
+
+  isAdmin(): boolean {
+    const user = this.currentUserValue;
+    return user && user.role === 'ADMIN';
   }
 
   getToken(): string | null {

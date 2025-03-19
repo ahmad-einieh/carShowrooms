@@ -9,6 +9,7 @@ import { ErrorComponent } from './components/shared/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -20,5 +21,6 @@ export const routes: Routes = [
     { path: 'showrooms/:id/edit', component: ShowroomEditComponent ,canActivate: [AuthGuard]},
     { path: 'cars', component: CarListComponent,canActivate: [AuthGuard] },
     { path: 'cars/create', component: CarCreateComponent,canActivate: [AuthGuard] },
+    {path:'users', component: UserComponent,canActivate:[AuthGuard]},
     { path: '**', component: ErrorComponent }
 ];

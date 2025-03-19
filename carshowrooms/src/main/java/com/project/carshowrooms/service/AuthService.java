@@ -38,26 +38,29 @@ public class AuthService {
 
     @Transactional
     public JwtResponseDTO authenticateUser(LoginRequestDTO loginRequest) {
-        String username = loginRequest.getUsername();
-        User user = null;
-        if (EmailValidator.isValidEmail(username)){
-            user = userRepository.findByEmail(loginRequest.getUsername()).orElse(null);
+        String usernameOrEmail = loginRequest.getUsername();
+        String actualUsername = usernameOrEmail;
+        
+        if (EmailValidator.isValidEmail(usernameOrEmail)) {
+            User user = userRepository.findByEmail(usernameOrEmail).orElse(null);
+            if (user != null) {
+                actualUsername = user.getUsername();
+            }
         }
+        
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        user == null ? username : user.getUsername(),
+                        actualUsername,
                         loginRequest.getPassword()
                 )
         );
-
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
         
-        if (user == null){
-            user = userRepository.findByUsername(loginRequest.getUsername())
+        User user = userRepository.findByUsername(actualUsername)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        }
-
+    
         return new JwtResponseDTO(
                 jwt,
                 user.getId(),
@@ -66,7 +69,6 @@ public class AuthService {
                 user.getRole()
         );
     }
-
     @Transactional
     public void registerUser(SignupRequestDTO signupRequest) {
         if (userRepository.existsByUsername(signupRequest.getUsername())) {

@@ -1,12 +1,33 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'custom-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  imports: [CommonModule,RouterLink, RouterLinkActive],
+  templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent  {
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
 }

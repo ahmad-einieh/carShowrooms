@@ -10,8 +10,7 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-car-list',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, CurrencyPipe],
-  templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.css']
+  templateUrl: './car-list.component.html'
 })
 export class CarListComponent implements OnInit {
   cars: CarListItem[] = [];

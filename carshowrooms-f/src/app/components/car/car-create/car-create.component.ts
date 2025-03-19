@@ -10,8 +10,7 @@ import { ShowroomListItem } from '../../../models/showroom.model';
   selector: 'app-car-create',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './car-create.component.html',
-  styleUrls: ['./car-create.component.css']
+  templateUrl: './car-create.component.html'
 })
 export class CarCreateComponent implements OnInit {
   carForm!: FormGroup;

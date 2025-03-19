@@ -12,8 +12,7 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-showroom-details',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, CurrencyPipe],
-  templateUrl: './showroom-details.component.html',
-  styleUrls: ['./showroom-details.component.css']
+  templateUrl: './showroom-details.component.html'
 })
 export class ShowroomDetailsComponent implements OnInit {
   showroomId!: number;

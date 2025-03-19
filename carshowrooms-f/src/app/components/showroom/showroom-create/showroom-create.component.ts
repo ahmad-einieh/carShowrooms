@@ -8,8 +8,7 @@ import { ShowroomService } from '../../../services/showroom.service';
   selector: 'app-showroom-create',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './showroom-create.component.html',
-  styleUrls: ['./showroom-create.component.css']
+  templateUrl: './showroom-create.component.html'
 })
 export class ShowroomCreateComponent implements OnInit {
   showroomForm!: FormGroup;

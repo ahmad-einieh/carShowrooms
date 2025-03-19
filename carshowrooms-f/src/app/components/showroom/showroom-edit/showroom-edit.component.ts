@@ -9,8 +9,7 @@ import { Showroom } from '../../../models/showroom.model';
   selector: 'app-showroom-edit',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './showroom-edit.component.html',
-  styleUrls: ['./showroom-edit.component.css']
+  templateUrl: './showroom-edit.component.html'
 })
 export class ShowroomEditComponent implements OnInit {
   showroomId!: number;

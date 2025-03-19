@@ -12,7 +12,13 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/cars" routerLinkActive="active">Cars</a>
           </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/users" routerLinkActive="active">users</a>
+          </li>
         </ul>
+        <div class="ms-auto" *ngIf="isLoggedIn()">
+          <a class="navbar-text cursor-pointer" (click)="onLogout()">Logout</a>
+        </div>
       </div>
     </div>
   </nav>

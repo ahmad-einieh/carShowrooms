@@ -8,8 +8,7 @@ import { ShowroomListItem } from '../../../models/showroom.model';
   selector: 'app-showroom-list',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './showroom-list.component.html',
-  styleUrls: ['./showroom-list.component.css']
+  templateUrl: './showroom-list.component.html'
 })
 export class ShowroomListComponent implements OnInit {
   showrooms: ShowroomListItem[] = [];
