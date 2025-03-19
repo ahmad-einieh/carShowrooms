@@ -2,6 +2,14 @@
 
 1- edit the `environment.ts` file in the `src/environments` directory to change url of backend.
 
+## Installation
+
+To install the dependencies, run:
+
+```bash
+npm install
+```
+
 ## Development server
 
 To start a local development server, run:
