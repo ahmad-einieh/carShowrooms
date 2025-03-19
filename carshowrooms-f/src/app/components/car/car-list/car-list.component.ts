@@ -18,6 +18,7 @@ export class CarListComponent implements OnInit {
   pageSize = 10;
   totalItems = 0;
   totalPages = 0;
+  isLoading = false;
   
   filters: Record<string, any> = {
     vin: '',
@@ -34,6 +35,7 @@ export class CarListComponent implements OnInit {
   }
 
   loadCars(): void {
+    this.isLoading = true;
     const cleanFilters: Record<string, any> = {};
     Object.keys(this.filters).forEach(key => {
       if (this.filters[key] !== null && this.filters[key] !== '') {
@@ -47,9 +49,11 @@ export class CarListComponent implements OnInit {
           this.cars = data.content;
           this.totalItems = data.totalElements;
           this.totalPages = data.totalPages;
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error loading cars', error);
+          this.isLoading = false;
         }
       });
   }

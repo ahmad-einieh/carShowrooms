@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   pageSize = 10;
   totalItems = 0;
   totalPages = 0;
+  isLoading = false;
 
   userToDelete?: number;
   private deleteModal: any;
@@ -28,16 +29,18 @@ export class UserComponent implements OnInit {
   }
 
   loadUsers(): void {
+    this.isLoading = true;
     this.userService.getUsers(this.currentPage, this.pageSize)
       .subscribe({
-
         next: (data) => {
           this.users = data.content;
           this.totalItems = data.totalElements;
           this.totalPages = data.totalPages;
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error loading users', error);
+          this.isLoading = false;
         }
       });
   }

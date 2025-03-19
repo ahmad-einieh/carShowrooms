@@ -16,6 +16,7 @@ export class ShowroomListComponent implements OnInit {
   pageSize = 10;
   totalItems = 0;
   totalPages = 0;
+  isLoading = false;
   
   // For delete confirmation modal
   showroomToDelete?: number;
@@ -28,15 +29,18 @@ export class ShowroomListComponent implements OnInit {
   }
 
   loadShowrooms(): void {
+    this.isLoading = true;
     this.showroomService.getShowrooms(this.currentPage, this.pageSize)
       .subscribe({
         next: (data) => {
           this.showrooms = data.content;
           this.totalItems = data.totalElements;
           this.totalPages = data.totalPages;
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error loading showrooms', error);
+          this.isLoading = false;
         }
       });
   }
